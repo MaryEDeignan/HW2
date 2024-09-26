@@ -1,44 +1,46 @@
 import numpy as np
-from copy import deepcopy
 
 class GradientBooster:
+    '''Gradient Boosting model combining predictions from a main model 
+    and a residual model using boosting steps to improve predictive performance.'''
+    
     def __init__(self, model, rmodel, boosting_steps):
-        self.model = model
-        self.rmodel = rmodel
-        self.steps = boosting_steps
-        #self.models = []
-
-        self.is_fitted = False
+        # initializing the GradientBooster with a main model, residual model, and number of boosting steps
+        self.model = model  # main model (ex. Lowess)
+        self.rmodel = rmodel   # residual model (ex. Ridge)
+        self.steps = boosting_steps  # number of boosting steps
+        self.is_fitted = False    # flag to check if the model has been fitted
         return
     
     def fit(self, xtrain, ytrain):
-        print('fitting...')
-        self.xtrain = xtrain
-        self.ytrain = ytrain
-        self.is_fitted = True
+        # fitting the GradientBooster model to training data
+        self.xtrain = xtrain  # storing training features (x)
+        self.ytrain = ytrain   # storing training target (y)
+        self.is_fitted = True  # changing the fitted flag to True
 
-        print('fit model')
+        # fitting main model to training data
         self.model.fit(self.xtrain, self.ytrain)
-        print('predict xtrain')
-        y_train_pred = self.model.predict(self.xtrain)
-        print('xtrain done')
+        # predicting on training data
+        y_train_pred = self.model.predict(self.xtrain)  
 
+        # the boosting process: iteratively fitting the residuals
         for i in range(self.steps):
-            print('fitting step', i)
-            residuals = self.ytrain - y_train_pred
-            self.rmodel.fit(xtrain, residuals)
-            y_train_pred += self.rmodel.predict(self.xtrain)
-            #self.models.append(deepcopy(self.rmodel))
+            residuals = self.ytrain - y_train_pred  # calculating the residuals
+            self.rmodel.fit(xtrain, residuals)  # fitting residual model to training features and residuals
+            y_train_pred += self.rmodel.predict(self.xtrain)  # updating predictions with residual model predictions
         return
     
     def predict(self, xtest):
-        print('predicting...')
+        # predicting target values for test data
+
+        # checking that model is fitted before predicting
         if not self.is_fitted:
             raise ValueError("is_fitted is false. Please fit the model.")
-        
+
+        # predicting using the main model
         ypred = self.model.predict(xtest)
-        
+        # adjusting predictions by subtracting residual model predictions
         ypred = ypred - self.rmodel.predict(xtest)
-        # for r in self.models:
-        #     ypred += np.concatenate(r.predict(xtest))
+
+        # returning the final predictions
         return ypred
