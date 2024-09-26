@@ -31,11 +31,11 @@ class LocallyWeightedLogisticRegression:
 
     def predict(self, xtest):
         # predicting class labels for test data
-        weights_matrix = self.lowess.predict(xtest)  # getting weights from lowess model
+        #weights_matrix = self.lowess.predict(xtest)  # getting weights from lowess model
         ypred = []   # initializing a list to store predictions
 
         for i in range(len(xtest)):  # iterating over each test sample
-            sample_weights = weights_matrix  # using weights for current sample
+            #sample_weights = weights_matrix  # using weights for current sample
             class_probabilities = [] # initializing list to store probabilities for each class
 
             # making predictions for each class
