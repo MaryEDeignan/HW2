@@ -5,7 +5,7 @@ from scipy.spatial.distance import cdist
 class Lowess:
     '''Locally weighted prediction using cdist.'''
    
-    def __init__(self, kernel, tau=0.05):
+    def __init__(self, kernel, tau=0.5):
         # initializing lowess model with a specified kernel function and tau (bandwidth)
         self.kernel = kernel
         self.tau = tau
