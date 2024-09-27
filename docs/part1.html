@@ -18,13 +18,15 @@
             First, the model is fit to the training data. Then, the model's predictions are subtracted from the actual predictor values.
             A second model is then fit to the training data and the residuals. This process is repeated for n steps. Finally, the model predicts the test data.</p>
         
-        <img src="../boosting_diagram.png" alt="Diagram of the iterative boosting process as explained in the first paragraph.">
+        <img src="boosting_diagram.png" alt="Diagram of the iterative boosting process as explained in the first paragraph.">
 
         <h3>Process</h3>
         <ol>
             <li>
                 We created the <code>GradientBooster</code> class. This class takes two models: the first model, trained on just the training data, and the residuals model, trained on the residuals of the first model.
-                    For n boosting steps, the GradientBooster class will fit models, predict based on the training data, and calculate the residuals. When called to predict data, the class will use its most recently trained model to predict the test data.
+                    For n boosting steps, the GradientBooster class will fit models, predict based on the training data, and calculate the residuals. When called to predict data, 
+                    the class will use its most recently trained model to predict the test data. You can see our GradientBooster class <a href="https://github.com/MaryEDeignan/Homework2/blob/main/g_boost.py">here!</a>
+                    We used Lowess models, you can see our model <a href="https://github.com/MaryEDeignan/Homework2/blob/main/Lowess.py">here!</a>
             </li>
             <li>
                 The GradientBooster class acts as a model, so we used it alongside k-fold cross-validation to predict concrete strength using the concrete dataset. We evaluated our model with mean squared error, using three different scalers.
@@ -32,6 +34,7 @@
             </li>
             <li>
                 We implemented the <code>xgboost</code> package to act as a comparison. We used mean squared error and k-fold cross-validation to measure the effectiveness of the package.
+                You can see our implentation in <a href="https://github.com/MaryEDeignan/Homework2/blob/main/HW2.ipynb">this notebook.</a>
             </li>
         </ol>
 
