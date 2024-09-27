@@ -16,26 +16,22 @@ class LocallyWeightedLogisticRegression:
         self.models = {}
 
     def fit(self, xtrain, ytrain):
-        # fitting the lowess model on training data
-        self.lowess.fit(xtrain, ytrain)
+        self.lowess.fit(xtrain, ytrain) # fitting the lowess model on training data
         self.xtrain = xtrain  # storing training features
-        self.ytrain = ytrain  # storing training labels/classifications
+        self.ytrain = ytrain  # storing training classifcations
         self.classes = np.unique(ytrain)  # extracting unique class labels from the training target (one for each classification)
 
         # training a model for each class (one v rest)
         for cls in self.classes:
             binary_ytrain = (ytrain == cls).astype(int)  # creating binary labels for current class
-            model = LogReg(multi_class='ovr') # initialize the logistic regression model with ovr (one vs rest)
+            model = LogReg(multi_class='ovr') # initializing the logistic regression model with ovr (one vs rest)
             model.fit(self.xtrain, binary_ytrain)  # fitting model for current class
             self.models[cls] = model # storing trained model in dictionary
 
     def predict(self, xtest):
-        # predicting class labels for test data
-        #weights_matrix = self.lowess.predict(xtest)  # getting weights from lowess model
         ypred = []   # initializing a list to store predictions
 
         for i in range(len(xtest)):  # iterating over each test sample
-            #sample_weights = weights_matrix  # using weights for current sample
             class_probabilities = [] # initializing list to store probabilities for each class
 
             # making predictions for each class
