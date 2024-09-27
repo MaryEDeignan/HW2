@@ -27,7 +27,8 @@
                     For n boosting steps, the GradientBooster class will fit models, predict based on the training data, and calculate the residuals. When called to predict data, the class will use its most recently trained model to predict the test data.
             </li>
             <li>
-                The GradientBooster class acts as a model, so we used it alongside k-fold cross-validation to predict concrete strength. We evaluated our model with mean squared error, using three different scalers.
+                The GradientBooster class acts as a model, so we used it alongside k-fold cross-validation to predict concrete strength using the concrete dataset. We evaluated our model with mean squared error, using three different scalers.
+                The three scalers we used were MinMaxScaler, StandardScaler, and QuantileScaler.
             </li>
             <li>
                 We implemented the <code>xgboost</code> package to act as a comparison. We used mean squared error and k-fold cross-validation to measure the effectiveness of the package.
