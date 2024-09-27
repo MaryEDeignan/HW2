@@ -13,22 +13,20 @@
         <h1>Locally Weighted Logistic Regression</h1>
         <h3>Introduction</h3>
         <p>Locally weighted regression finds the weights of a small number of points at a time, based on the distance between a point and its neighbors.
-            This strategy can be applied to classification as well as regression via logistic regression, which uses a sigmoid relationship to determine whether an individual data point belongs to a certain class.
-            For more than one class, logistic regression requires the one-versus-many method, where the data is split into a single class and all the classes that are not that class.
-        </p>
-
-        <h3>Process</h3>
-        <p>This part of the project was based off of our previous project, which just did locally weighted regression. We modified this class, using scikit-learn's Logistic Regression model, and set it to classify by one versus rest classification for each class in a given dataset.
-            The model predicts the likelihood of a given point to be a part of a class for each class in the dataset, and then chooses the most likely class as its prediction for that data point. You can see our logistic regression model <a href="https://github.com/MaryEDeignan/Homework2/blob/main/Logistic.py">here</a>
-            and you can see our implentation in <a href="https://github.com/MaryEDeignan/Homework2/blob/main/HW2.ipynb">this notebook.</a> We used the sklearn iris dataset for this section.
-
-
+            This strategy can be applied to classification via logistic regression, which uses a sigmoid relationship to determine whether an individual data point belongs to a certain class.
+            For more than one class, logistic regression requires the one-versus-many method, where the data is split into a single class and all the classes that are not that class. Our goal was to implement one-vs-many logistic regression within the Lowess class to improve classification predictions, and then test the model on real data to confirm its accuracy.
         </p>
 
         <img src="one_vs_rest_classification.png" alt="The process of logistic classification">
 
+        <h3>Process</h3>
+        <p>This part of the project was based off of our previous project, which investigated locally weighted regression. Locally weighted regression predicts weights for a set of neighbors within the data by calculating the distance from each point to its neighbors. Our previous Lowess class used a linear regression model to make predictions, so we needed to modify this class to better predict for logistic regression. We modified this class, using scikit-learn's Logistic Regression model, and set it to classify by one versus rest classification for each class in a given dataset.
+            The model predicts the likelihood of a given point to be a part of a class for each class in the dataset, and then chooses the most likely class as its prediction for that data point. You can see our logistic regression model <a href="https://github.com/MaryEDeignan/Homework2/blob/main/Logistic.py">here</a>
+            and you can see our implementation in <a href="https://github.com/MaryEDeignan/Homework2/blob/main/HW2.ipynb">this notebook.</a> We used the sklearn iris dataset for this section.
+        </p>
+
         <h3>Conclusions</h3>
-        <p>Our locally weighted logistic regression model tends to perform better on the iris dataset than <a href="https://calvintchi.github.io/classical_machine_learning/2020/08/16/lwlr.html">Calvin Chi's model.t</a> However, accuracy scores vary across different runs. The scikit-learn Logistic Regression model used as a base may influence the final results.
+        <p>Our locally weighted logistic regression model tends to perform better on the iris dataset than <a href="https://calvintchi.github.io/classical_machine_learning/2020/08/16/lwlr.html">Calvin Chi's model</a>, which uses a similar strategy with a somewhat different implementation. However, accuracy scores vary across different runs. The scikit-learn Logistic Regression model used as a base may influence the final results.
         </p>
 
         <p><a href="index.html">Go Back</a></p>
