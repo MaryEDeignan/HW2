@@ -9,4 +9,21 @@
         <title>Assignment 2 part 2</title>
     </head>
 
+    <main class="container">
+        <h1>Locally Weighted Logistic Regression</h1>
+        <h3>Introduction</h3>
+        <p>Locally weighted regression finds the weights of a small number of points at a time, based on the distance between a point and its neighbors.
+            This strategy can be applied to classification as well as regression via logistic regression, which uses a sigmoid relationship to determine whether an individual data point belongs to a certain class.
+            For more than one class, logistic regression requires the one-versus-many method, where the data is split into a single class and all the classes that are not that class.
+        </p>
+
+        <h3>Process</h3>
+        <p>This part of the project was based off of our previous project, which just did locally weighted regression. We modified this class, using scikit-learn's Logistic Regression model, and set it to classify by one versus rest classification for each class in a given dataset.
+            The model predicts the likelihood of a given point to be a part of a class for each class in the dataset, and then chooses the most likely class as its prediction for that data point.
+        </p>
+
+        <h3>Conclusions</h3>
+
+        <p><a href="index.html">Go Back</a></p>
+    </main>
 </html>
